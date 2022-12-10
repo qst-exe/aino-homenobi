@@ -2,17 +2,17 @@ import 'dart:core';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:praise_with_ai/components/message_cell.dart';
-import 'firebase_options.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import 'components/message_content.dart';
+import 'firebase_options.dart';
 import 'provider/message_provider.dart';
-
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
@@ -66,17 +66,31 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('AIノほめのびくん',
+        title: Text(
+          'AIノほめのびくん',
           style: GoogleFonts.notoSansJavanese(
-              textStyle: Theme.of(context).textTheme.bodyText1, color: Colors.white),
+              textStyle: Theme.of(context).textTheme.bodyText1,
+              color: Colors.white),
         ),
+        actions: [
+          ElevatedButton(
+              onPressed: () {
+                _launchUrl("https://beta.openai.com/");
+              },
+              child: Text(
+                "引用元",
+                style: GoogleFonts.notoSansJavanese(
+                    textStyle: Theme.of(context).textTheme.bodyText1,
+                    color: Colors.white),
+              ))
+        ],
       ),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Expanded(
-            child: mainContent(context, messageProvider)),
-
+            child: MessageContent(),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Form(
@@ -93,25 +107,29 @@ class HomePage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 5),
                           child: SizedBox(
                             width: 250.0,
-                            child: (messageProvider.isLoading) ? DefaultTextStyle(
-                              style:GoogleFonts.notoSansJavanese(
-                                textStyle: Theme.of(context).textTheme.bodyText1,
-                                color: Colors.grey,
-                                fontSize: 12
-                              ),
-                              child: AnimatedTextKit(
-                                animatedTexts: [
-                                  TypewriterAnimatedText('AIノほめのびくんが返信中',
-                                      cursor: '...',
-                                      speed: Duration(milliseconds: 150),
-                                  ),
-                                ],
-                                isRepeatingAnimation: true,
-                                onTap: () {
-                                  print("Tap Event");
-                                },
-                              ),
-                            ) : Container(),
+                            child: (messageProvider.isLoading)
+                                ? DefaultTextStyle(
+                                    style: GoogleFonts.notoSansJavanese(
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                        color: Colors.grey,
+                                        fontSize: 12),
+                                    child: AnimatedTextKit(
+                                      animatedTexts: [
+                                        TypewriterAnimatedText(
+                                          'AIノほめのびくんが返信中',
+                                          cursor: '...',
+                                          speed: Duration(milliseconds: 150),
+                                        ),
+                                      ],
+                                      isRepeatingAnimation: true,
+                                      onTap: () {
+                                        print("Tap Event");
+                                      },
+                                    ),
+                                  )
+                                : Container(),
                           ),
                         ),
                       ],
@@ -172,38 +190,47 @@ class HomePage extends StatelessWidget {
                             },
                           ),
                         ),
-                        Padding( padding: EdgeInsets.symmetric(horizontal: screenWidth > 765 ? 8: 4),),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth > 765 ? 8 : 4),
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: screenWidth > 765 ? ElevatedButton.icon(
-                            icon: FaIcon(FontAwesomeIcons.paperPlane),
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                postMessage(messageProvider, _controller.text);
-                                _controller.clear();
-                              }
-                            },
-                            label: Padding(
-                              padding: const EdgeInsets.only(top: 15, left: 5, right: 5, bottom: 10),
-                              child: Text(
-                                '話す',
-                                style: GoogleFonts.notoSansJavanese(
-                                    textStyle: Theme.of(context).textTheme.bodyText1,
-                                    color: Colors.white,
-                                    height: 1.5
+                          child: screenWidth > 765
+                              ? ElevatedButton.icon(
+                                  icon: FaIcon(FontAwesomeIcons.paperPlane),
+                                  onPressed: () async {
+                                    if (_formKey.currentState!.validate()) {
+                                      postMessage(
+                                          messageProvider, _controller.text);
+                                      _controller.clear();
+                                    }
+                                  },
+                                  label: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 15, left: 5, right: 5, bottom: 10),
+                                    child: Text(
+                                      '話す',
+                                      style: GoogleFonts.notoSansJavanese(
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1,
+                                          color: Colors.white,
+                                          height: 1.5),
+                                    ),
+                                  ),
+                                )
+                              : IconButton(
+                                  color: Colors.pink,
+                                  icon: FaIcon(FontAwesomeIcons.paperPlane),
+                                  onPressed: () async {
+                                    if (_formKey.currentState!.validate()) {
+                                      postMessage(
+                                          messageProvider, _controller.text);
+                                      _controller.clear();
+                                    }
+                                  },
                                 ),
-                              ),
-                            ),
-                          ): IconButton(
-                            color: Colors.pink,
-                            icon: FaIcon(FontAwesomeIcons.paperPlane),
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                              postMessage(messageProvider, _controller.text);
-                                _controller.clear();
-                              }
-                            },
-                          ),
                         ),
                       ],
                     ),
@@ -212,7 +239,13 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          screenWidth > 765 ? Container(): Padding( padding: EdgeInsets.symmetric(vertical: 10),)
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: Text('© 2022 kusutan',
+                style: GoogleFonts.notoSansJavanese(
+                  textStyle: Theme.of(context).textTheme.bodyText1,
+                )),
+          )
         ],
       ),
     );
@@ -223,28 +256,10 @@ class HomePage extends StatelessWidget {
     messageProvider.getReply(text);
   }
 
-  mainContent(BuildContext context, MessageProvider messageProvider) {
-    if (messageProvider.messages.length == 0) {
-      return Center(child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Text('''
-AIノほめのびくんに愚痴を話してなぐさめてもらいましょう！
-投稿内容は保存されず、AIノほめのびくんも忘れてしまいます！
-※ たまに不機嫌になることがあるので、ご了承くださいm(_ _)m
-''',
-            style: GoogleFonts.notoSansJavanese(
-                textStyle: Theme.of(context).textTheme.bodyText1,
-                height: 1.5)),
-      )
-      );
+  Future<void> _launchUrl(String url) async {
+    final Uri _url = Uri.parse(url);
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
     }
-
-    return  ListView.builder(
-      itemCount: messageProvider.messages.length,
-      itemBuilder: (BuildContext context, int index) {
-        final message = messageProvider.messages[index];
-        return MessageCell(message: message);
-      },
-    );
   }
 }
