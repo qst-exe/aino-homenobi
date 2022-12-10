@@ -18,7 +18,7 @@ class MessageContent extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: Text('''
 AIノほめのびくんに愚痴を話してなぐさめてもらいましょう！
-投稿内容は保存されず、AIノほめのびくんも忘れてしまいます！
+投稿内容はAIノほめのびくんのサーバには保存されず、AIノほめのびくんも忘れてしまいます！
 ※ たまに不機嫌になることがあるので、ご了承くださいm(_ _)m
 ''',
             style: GoogleFonts.notoSansJavanese(
