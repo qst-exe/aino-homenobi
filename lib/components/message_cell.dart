@@ -34,18 +34,7 @@ class MessageCell extends StatelessWidget {
                     mainAxisAlignment:
                     MainAxisAlignment.spaceBetween,
                     children: [
-                      message.isSelf
-                          ? Container()
-                          : Text(
-                        'AIノほめのびくん',
-                        overflow:
-                        TextOverflow.ellipsis,
-                        style: GoogleFonts.notoSansJavanese(
-                            textStyle: Theme.of(context).textTheme.bodyText1,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      getName(context, message),
                       SizedBox(
                         width: message.isSelf
                             ? screenWidth - 200
@@ -77,7 +66,7 @@ class MessageCell extends StatelessWidget {
         ));
   }
 
-  getFace(Message message) {
+  Widget getFace(Message message) {
     if (message.isSelf) {
       return Container();
     }
@@ -87,6 +76,36 @@ class MessageCell extends StatelessWidget {
     }
 
     return FaIcon(FontAwesomeIcons.faceSmileWink);
+  }
+
+  Widget getName(BuildContext context, Message message) {
+    if (message.isSelf) {
+      return Container();
+    }
+
+    if (message.isCool) {
+      return  Text(
+        'AIノスパルタくん',
+        overflow:
+        TextOverflow.ellipsis,
+        style: GoogleFonts.notoSansJavanese(
+          textStyle: Theme.of(context).textTheme.bodyText1,
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+    }
+
+    return Text(
+      'AIノほめのびくん',
+      overflow:
+      TextOverflow.ellipsis,
+      style: GoogleFonts.notoSansJavanese(
+        textStyle: Theme.of(context).textTheme.bodyText1,
+        fontSize: 12,
+        fontWeight: FontWeight.bold,
+      ),
+    );
   }
 
   getBgColor(Message message) {

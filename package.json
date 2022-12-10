@@ -9,6 +9,7 @@
   },
   "scripts": {
     "prepare": "husky install",
+    "build": "fvm flutter build web --release --web-renderer html",
     "build:runner": "fvm flutter packages pub run build_runner build --delete-conflicting-outputs",
     "dev": "fvm flutter run -d chrome --web-renderer html",
     "deploy:hosting": "fvm flutter build web --release --web-renderer html && firebase deploy --only hosting",
