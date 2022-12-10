@@ -1,6 +1,8 @@
 import 'dart:core';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:praise_with_ai/components/message_cell.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +64,10 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('AIノほめのびくん'),
+        title: Text('AIノほめのびくん',
+          style: GoogleFonts.notoSansJavanese(
+              textStyle: Theme.of(context).textTheme.bodyText1, color: Colors.white),
+        ),
       ),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -125,31 +130,38 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       validator: (value) {
-                        if (value == null) {
+                        if (value!.isEmpty) {
                           return 'メッセージが入力されていません';
                         }
                         return null;
                       },
                       onFieldSubmitted: (String? value) {
-                        if (_controller.text.isEmpty) return;
-                        postMessage(messageProvider, _controller.text);
+                        if (_formKey.currentState!.validate()) {
+                          postMessage(messageProvider, _controller.text);
+                        }
                       },
                     ),
                   ),
                   const Padding( padding: EdgeInsets.symmetric(horizontal: 8),),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: ElevatedButton(
+                    child: ElevatedButton.icon(
+                      icon: FaIcon(FontAwesomeIcons.comment),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           postMessage(messageProvider, _controller.text);
                           _controller.clear();
                         }
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
+                      label: Padding(
+                        padding: const EdgeInsets.only(top: 15, left: 5, right: 5, bottom: 10),
                         child: Text(
-                          '送信',
+                          '話す',
+                          style: GoogleFonts.notoSansJavanese(
+                              textStyle: Theme.of(context).textTheme.bodyText1,
+                              color: Colors.white,
+                              height: 1.5
+                          ),
                         ),
                       ),
                     ),

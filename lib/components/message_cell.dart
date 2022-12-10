@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '/data/model/message.dart';
 
 class MessageCell extends StatelessWidget {
@@ -19,12 +22,7 @@ class MessageCell extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            message.isSelf
-                ? Container()
-                : const Icon(
-              Icons.account_box,
-              size: 30,
-            ),
+            getFace(message),
             Padding(
               padding: EdgeInsets.only(
                   left: message.isSelf ? 70 : 10),
@@ -42,10 +40,11 @@ class MessageCell extends StatelessWidget {
                         'AIノほめのびくん',
                         overflow:
                         TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontWeight:
-                            FontWeight.bold,
-                            fontSize: 12),
+                        style: GoogleFonts.notoSansJavanese(
+                            textStyle: Theme.of(context).textTheme.bodyText1,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                        ),
                       ),
                       SizedBox(
                         width: message.isSelf
@@ -58,16 +57,17 @@ class MessageCell extends StatelessWidget {
                     height: 5,
                   ),
                   Container(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 10),
                     decoration: BoxDecoration(
                         color: getBgColor(message),
                         borderRadius:
                         const BorderRadius.all(
                             Radius.circular(10))),
                     width: screenWidth - 100,
-                    child: Text(
+                    child: SelectableText(
                       message.text,
-                      overflow: TextOverflow.visible,
+                      style: GoogleFonts.notoSansJavanese(
+                          textStyle: Theme.of(context).textTheme.bodyText1, height: 1.5),
                     ),
                   ),
                 ],
@@ -75,6 +75,18 @@ class MessageCell extends StatelessWidget {
             ),
           ],
         ));
+  }
+
+  getFace(Message message) {
+    if (message.isSelf) {
+      return Container();
+    }
+
+    if (message.isCool) {
+      return FaIcon(FontAwesomeIcons.faceMeh);
+    }
+
+    return FaIcon(FontAwesomeIcons.faceSmileWink);
   }
 
   getBgColor(Message message) {
