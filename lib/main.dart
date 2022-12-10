@@ -8,6 +8,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'components/message_content.dart';
@@ -20,18 +21,20 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  final prefs = await SharedPreferences.getInstance();
+  runApp(MyApp(prefs: prefs));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  MyApp({required this.prefs, Key? key});
+  SharedPreferences prefs;
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MessageProvider>(
-          create: (context) => MessageProvider(),
+          create: (context) => MessageProvider(prefs),
         ),
       ],
       child: MaterialApp(
@@ -73,15 +76,19 @@ class HomePage extends StatelessWidget {
               color: Colors.white),
         ),
         actions: [
-          ElevatedButton(
+          ElevatedButton.icon(
+            icon: FaIcon(FontAwesomeIcons.trash),
               onPressed: () {
-                _launchUrl("https://beta.openai.com/");
+                messageProvider.resetMessage();
               },
-              child: Text(
-                "引用元",
-                style: GoogleFonts.notoSansJavanese(
-                    textStyle: Theme.of(context).textTheme.bodyText1,
-                    color: Colors.white),
+              label: Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 0),
+                child: Text(
+                  "履歴を削除",
+                  style: GoogleFonts.notoSansJavanese(
+                      textStyle: Theme.of(context).textTheme.bodyText1,
+                      color: Colors.white),
+                ),
               ))
         ],
       ),
@@ -240,11 +247,29 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
-            child: Text('© 2022 kusutan',
-                style: GoogleFonts.notoSansJavanese(
-                  textStyle: Theme.of(context).textTheme.bodyText1,
-                )),
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      _launchUrl("https://beta.openai.com/");
+                    },
+                    child: Text(
+                      "ほめのびくんの利用AIについて",
+                      style: GoogleFonts.notoSansJavanese(
+                          textStyle: Theme.of(context).textTheme.bodyText1,
+                          color: Colors.blue,
+                          fontSize: 12,
+                      ),
+                    )),
+                Text('© 2022 kusutan',
+                    style: GoogleFonts.notoSansJavanese(
+                        textStyle: Theme.of(context).textTheme.bodyText1,
+                        color: Colors.grey
+                    )),
+              ],
+            ),
           )
         ],
       ),
