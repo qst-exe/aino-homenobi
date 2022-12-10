@@ -19,10 +19,18 @@ const formatMessage = (message: string): string => {
 export const postMessage = functions.https.onCall(async (data) => {
   const openai = new OpenAIApi(configuration);
 
-  const completion = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: formatMessage(data.message),
-    max_tokens: 500,
-  });
-  return {reply: completion.data.choices[0].text};
+  try {
+    const completion = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: formatMessage(data.message),
+      max_tokens: 500,
+    });
+
+    return {reply: completion.data.choices[0].text?.trim()};
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    console.error(error);
+  }
+
+  return {reply: "ほめのびくんの調子が悪いみたいです。また後で声をかけてあげてください。"};
 });
