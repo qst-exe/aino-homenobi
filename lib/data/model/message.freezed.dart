@@ -21,6 +21,7 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Message {
   String get text => throw _privateConstructorUsedError;
+  bool get isCool => throw _privateConstructorUsedError;
   bool get isSelf => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +34,7 @@ abstract class $MessageCopyWith<$Res> {
   factory $MessageCopyWith(Message value, $Res Function(Message) then) =
       _$MessageCopyWithImpl<$Res, Message>;
   @useResult
-  $Res call({String text, bool isSelf});
+  $Res call({String text, bool isCool, bool isSelf});
 }
 
 /// @nodoc
@@ -50,6 +51,7 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
   @override
   $Res call({
     Object? text = null,
+    Object? isCool = null,
     Object? isSelf = null,
   }) {
     return _then(_value.copyWith(
@@ -57,6 +59,10 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      isCool: null == isCool
+          ? _value.isCool
+          : isCool // ignore: cast_nullable_to_non_nullable
+              as bool,
       isSelf: null == isSelf
           ? _value.isSelf
           : isSelf // ignore: cast_nullable_to_non_nullable
@@ -72,7 +78,7 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
       __$$_MessageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String text, bool isSelf});
+  $Res call({String text, bool isCool, bool isSelf});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$_MessageCopyWithImpl<$Res>
   @override
   $Res call({
     Object? text = null,
+    Object? isCool = null,
     Object? isSelf = null,
   }) {
     return _then(_$_Message(
@@ -93,6 +100,10 @@ class __$$_MessageCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      isCool: null == isCool
+          ? _value.isCool
+          : isCool // ignore: cast_nullable_to_non_nullable
+              as bool,
       isSelf: null == isSelf
           ? _value.isSelf
           : isSelf // ignore: cast_nullable_to_non_nullable
@@ -104,7 +115,8 @@ class __$$_MessageCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Message implements _Message {
-  const _$_Message({required this.text, this.isSelf = false});
+  const _$_Message(
+      {required this.text, this.isCool = false, this.isSelf = false});
 
   factory _$_Message.fromJson(Map<String, dynamic> json) =>
       _$$_MessageFromJson(json);
@@ -113,11 +125,14 @@ class _$_Message implements _Message {
   final String text;
   @override
   @JsonKey()
+  final bool isCool;
+  @override
+  @JsonKey()
   final bool isSelf;
 
   @override
   String toString() {
-    return 'Message(text: $text, isSelf: $isSelf)';
+    return 'Message(text: $text, isCool: $isCool, isSelf: $isSelf)';
   }
 
   @override
@@ -126,12 +141,13 @@ class _$_Message implements _Message {
         (other.runtimeType == runtimeType &&
             other is _$_Message &&
             (identical(other.text, text) || other.text == text) &&
+            (identical(other.isCool, isCool) || other.isCool == isCool) &&
             (identical(other.isSelf, isSelf) || other.isSelf == isSelf));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, text, isSelf);
+  int get hashCode => Object.hash(runtimeType, text, isCool, isSelf);
 
   @JsonKey(ignore: true)
   @override
@@ -148,13 +164,17 @@ class _$_Message implements _Message {
 }
 
 abstract class _Message implements Message {
-  const factory _Message({required final String text, final bool isSelf}) =
-      _$_Message;
+  const factory _Message(
+      {required final String text,
+      final bool isCool,
+      final bool isSelf}) = _$_Message;
 
   factory _Message.fromJson(Map<String, dynamic> json) = _$_Message.fromJson;
 
   @override
   String get text;
+  @override
+  bool get isCool;
   @override
   bool get isSelf;
   @override

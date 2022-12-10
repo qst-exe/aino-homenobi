@@ -8,6 +8,7 @@ part 'message.g.dart';
 abstract class Message with _$Message {
   const factory Message({
     required String text,
+    @Default(false) bool isCool,
     @Default(false) bool isSelf,
   }) = _Message;
 

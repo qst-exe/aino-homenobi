@@ -19,7 +19,7 @@ class MessageProvider with ChangeNotifier {
     try {
       final postMessagePayload = {"message": text};
       final res = await postMessage(postMessagePayload);
-      final _aiMessage = Message(text: res.data['reply']);
+      final _aiMessage = Message(text: res.data['reply'], isCool: res.data['isCool']);
       _update(_aiMessage);
     } catch (e) {
       print(e);

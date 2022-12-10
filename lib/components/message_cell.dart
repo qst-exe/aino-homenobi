@@ -39,7 +39,7 @@ class MessageCell extends StatelessWidget {
                       message.isSelf
                           ? Container()
                           : Text(
-                        'ほめのびくん',
+                        'AIノほめのびくん',
                         overflow:
                         TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -55,14 +55,12 @@ class MessageCell extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        color: message.isSelf
-                            ? Colors.grey[200]
-                            : Colors.pink[100],
+                        color: getBgColor(message),
                         borderRadius:
                         const BorderRadius.all(
                             Radius.circular(10))),
@@ -77,6 +75,18 @@ class MessageCell extends StatelessWidget {
             ),
           ],
         ));
+  }
+
+  getBgColor(Message message) {
+    if (message.isSelf) {
+      return Colors.grey[200];
+    }
+
+    if (message.isCool) {
+      return Colors.lightBlue[200];
+    }
+
+    return Colors.pink[100];
   }
 }
 

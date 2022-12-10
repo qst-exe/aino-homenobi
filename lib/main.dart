@@ -5,11 +5,13 @@ import 'package:praise_with_ai/components/message_cell.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:flutter/material.dart';
 
 import 'provider/message_provider.dart';
 
 Future<void> main() async {
+  setUrlStrategy(PathUrlStrategy());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'AIほめのびくん',
+        title: 'AIノほめのびくん',
         theme: ThemeData(
           primarySwatch: Colors.pink,
         ),
@@ -60,7 +62,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('AIほめのびくん'),
+        title: Text('AIノほめのびくん'),
       ),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,11 +95,12 @@ class HomePage extends StatelessWidget {
                             width: 2,
                           ),
                         ),
+                        hintText: 'AIノほめのびくんに愚痴ってみましょう(例：疲れた)',
                         labelStyle: TextStyle(
                           fontSize: 14,
                           color: Colors.pink[200],
                         ),
-                        labelText: 'ほめのびくんに言いたいこと',
+                        labelText: 'AIノほめのびくんに言いたいこと',
                         floatingLabelStyle: const TextStyle(fontSize: 12),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
