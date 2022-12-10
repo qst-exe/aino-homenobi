@@ -50,9 +50,6 @@ class AiInput extends StatelessWidget {
                                   ),
                                 ],
                                 isRepeatingAnimation: true,
-                                onTap: () {
-                                  print("Tap Event");
-                                },
                               ),
                             )
                           : Container(),
@@ -74,7 +71,11 @@ class AiInput extends StatelessWidget {
                             width: 2,
                           ),
                         ),
-                        hintText: '「疲れた」などAIノほめのびくんに愚痴ってみましょう',
+                        hintText: '「疲れた」などと愚痴ってみましょう',
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          textBaseline: TextBaseline.ideographic,
+                        ),
                         labelStyle: TextStyle(
                           fontSize: 14,
                           color: Colors.pink[200],

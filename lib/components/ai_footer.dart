@@ -15,8 +15,9 @@ class AiFooter extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Flex(
+        direction: Axis.horizontal,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
             children: [
@@ -37,7 +38,8 @@ class AiFooter extends StatelessWidget {
           Text('© 2022 kusutan',
               style: GoogleFonts.notoSansJavanese(
                   textStyle: Theme.of(context).textTheme.bodyText1,
-                  color: Colors.grey)),
+                  color: Colors.grey,
+                  fontSize: 12)),
         ],
       ),
     );
