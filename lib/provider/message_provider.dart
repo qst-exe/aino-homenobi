@@ -1,12 +1,42 @@
+import 'dart:convert';
+
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/model/message.dart';
 
 final functions = FirebaseFunctions.instance;
+const localStorageKey = 'messages';
 
 class MessageProvider with ChangeNotifier {
   List<Message> messages = [];
+  SharedPreferences? prefs;
+
+  MessageProvider() {
+    SharedPreferences.getInstance().then((preferences) {
+      prefs = preferences;
+      init();
+    });
+  }
+
+  void init() {
+    try {
+      final res = prefs!.getString(localStorageKey);
+      if (res!.isNotEmpty) {
+        final decodedData = json.decode(res) as List<dynamic>;
+        final newMessages = decodedData.map((data) => Message(
+            text: data['text'],
+            isCool: data['isSelf'],
+            isSelf: data['isSelf']
+        )).toList();
+        messages.addAll(newMessages);
+        notifyListeners();
+      }
+    } catch (e) {
+      prefs!.remove(localStorageKey);
+    }
+  }
 
   void setMessage(String text) {
     final _myMessage = Message(text: text, isSelf: true);
@@ -28,6 +58,8 @@ class MessageProvider with ChangeNotifier {
 
   void _update(Message message) {
     messages.add(message);
+    final value = json.encode(messages);
+    prefs!.setString(localStorageKey, value);
     notifyListeners();
   }
 }

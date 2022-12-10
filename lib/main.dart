@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:praise_with_ai/components/message_cell.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:flutter/material.dart';
 
 import 'provider/message_provider.dart';
+
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
@@ -22,7 +24,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,24 +75,28 @@ class HomePage extends StatelessWidget {
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Expanded(
-            child: ListView.builder(
+            child: messageProvider.messages.length > 0 ? ListView.builder(
               itemCount: messageProvider.messages.length,
               itemBuilder: (BuildContext context, int index) {
                 final message = messageProvider.messages[index];
                 return MessageCell(message: message);
               },
-            ),
-          ),
+            ): Center(child: Text('AIノほめのびくんに愚痴を話してなぐさめてもらいましょう',
+                style: GoogleFonts.notoSansJavanese(
+                    textStyle: Theme.of(context).textTheme.bodyText1))
+            ),),
           Align(
             alignment: Alignment.bottomCenter,
             child: Form(
               key: _formKey,
+              autovalidateMode: AutovalidateMode.disabled,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: screenWidth - 150,
                     child: TextFormField(
+                      textInputAction: TextInputAction.none,
                       controller: _controller,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
