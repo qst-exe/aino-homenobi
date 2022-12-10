@@ -1,0 +1,42 @@
+{
+  "name": "praise-with-ai",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "fvm flutter run -d chrome",
+    "deploy:hosting": "fvm flutter build web --release && firebase deploy --only hosting",
+    "deploy:functions": "fvm flutter build web --release && firebase deploy --only functions",
+    "deploy": "fvm flutter build web --release && firebase deploy --only hosting,functions"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qst-exe/praise-with-ai.git"
+  },
+  "author": "qst-exe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qst-exe/praise-with-ai/issues"
+  },
+  "homepage": "https://github.com/qst-exe/praise-with-ai#readme",
+  "devDependencies": {
+    "gitmoji-cli": "^7.0.2",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
+    "prettier": "^2.8.0"
+  },
+  "lint-staged": {
+    "*.dart": [
+      "fvm flutter format",
+      "fvm flutter pub run import_sorter:main"
+    ],
+    "*.@(json|yaml)": [
+      "prettier --write"
+    ]
+  }
+}
