@@ -16,7 +16,7 @@ class MessageContent extends StatelessWidget {
       return Center(
           child: Padding(
         padding: const EdgeInsets.all(15),
-        child: Text('''
+        child: SelectableText('''
 AIノほめのびくんに愚痴を話してなぐさめてもらいましょう！
 投稿内容はAIノほめのびくんのサーバには保存されず、AIノほめのびくんも忘れてしまいます！
 ※ たまに不機嫌になることがあるので、ご了承くださいm(_ _)m

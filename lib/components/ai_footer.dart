@@ -51,7 +51,10 @@ class AiFooter extends StatelessWidget {
         context: context,
         builder: (_) {
           return AlertDialog(
-            title: Text('ライセンス'),
+            title: Text('ライセンス',
+                style: GoogleFonts.notoSansJavanese(
+                  textStyle: Theme.of(context).textTheme.bodyText1,
+                )),
             content: Container(
               width: screenWidth - 100,
               height: screenHeight - 100,
@@ -63,16 +66,17 @@ class AiFooter extends StatelessWidget {
                   return Container(
                     child: Column(
                       children: [
-                        Text(license.packageName,
+                        SelectableText(license.packageName,
                             style: GoogleFonts.notoSansJavanese(
                                 textStyle:
                                     Theme.of(context).textTheme.bodyText1,
-                                color: Colors.grey)),
-                        Text(license.paragraphText,
+                                color: Colors.blueGrey[700])),
+                        SelectableText(license.paragraphText,
                             style: GoogleFonts.notoSansJavanese(
                                 textStyle:
                                     Theme.of(context).textTheme.bodyText1,
-                                color: Colors.grey)),
+                                color: Colors.blueGrey,
+                                height: 1.5)),
                       ],
                     ),
                   );
@@ -82,7 +86,10 @@ class AiFooter extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text('閉じる'),
+                child: Text('閉じる',
+                    style: GoogleFonts.notoSansJavanese(
+                        textStyle: Theme.of(context).textTheme.bodyText1,
+                        color: Colors.pink)),
               ),
             ],
           );

@@ -81,7 +81,7 @@ class DeleteButton extends StatelessWidget {
             ),
           ),
           content: Text(
-            "AIノほめのびくんとの会話履歴を削除しますか？\n\nほめのびくんのデータは記録されていないので、一度削除すると復元できません。",
+            "AIノほめのびくんとの会話履歴を削除しますか？\nほめのびくんのデータは記録されていないので、一度削除すると復元できません。",
             style: GoogleFonts.notoSansJavanese(
                 textStyle: Theme.of(context).textTheme.bodyText1, height: 1.5),
           ),
