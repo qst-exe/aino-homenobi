@@ -46,6 +46,7 @@ class AiFooter extends StatelessWidget {
       BuildContext context, LicenseProvider licenseProvider) async {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    final double modalWidth = screenWidth >= 380 ? screenWidth - 100 : 270;
 
     await showDialog<void>(
         context: context,
@@ -56,7 +57,7 @@ class AiFooter extends StatelessWidget {
                   textStyle: Theme.of(context).textTheme.bodyText1,
                 )),
             content: Container(
-              width: screenWidth - 100,
+              width: modalWidth,
               height: screenHeight - 100,
               child: ListView.builder(
                 shrinkWrap: true,
