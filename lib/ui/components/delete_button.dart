@@ -25,6 +25,7 @@ class DeleteButton extends StatelessWidget {
     return ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.pink[300],
+            elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(0),
@@ -53,6 +54,7 @@ class DeleteButton extends StatelessWidget {
     return IconButton(
       style: ElevatedButton.styleFrom(
           backgroundColor: Colors.pink[300],
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(0),
