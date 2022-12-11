@@ -1,5 +1,5 @@
 name: praise_with_ai
-description: A new Flutter project.
+description: AIノほめのびくんに愚痴を話してなぐさめてもらいましょう。投稿内容はAIノほめのびくんのサーバには保存されず、AIノほめのびくんも忘れてしまいます。
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
