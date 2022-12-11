@@ -13,32 +13,29 @@ class AiFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     final licenseProvider = Provider.of<LicenseProvider>(context, listen: true);
 
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-      child: Wrap(
-        direction: Axis.horizontal,
-        alignment: WrapAlignment.center,
-        children: [
-          LinkButton(
-            label: "ほめのびくんの利用AIについて",
-            onClick: () {
-              _launchUrl("https://beta.openai.com/");
-            },
-          ),
-          LinkButton(
-            label: "ライセンス",
-            onClick: () async {
-              _showAlert(context, licenseProvider);
-            },
-          ),
-          LinkButton(
-            label: "© 2022 kusutan",
-            onClick: () async {
-              _launchUrl("https://twitter.com/qst_exe");
-            },
-          ),
-        ],
-      ),
+    return Wrap(
+      direction: Axis.horizontal,
+      alignment: WrapAlignment.center,
+      children: [
+        LinkButton(
+          label: "ほめのびくんの利用AIについて",
+          onClick: () {
+            _launchUrl("https://beta.openai.com/");
+          },
+        ),
+        LinkButton(
+          label: "ライセンス",
+          onClick: () async {
+            _showAlert(context, licenseProvider);
+          },
+        ),
+        LinkButton(
+          label: "© 2022 kusutan",
+          onClick: () async {
+            _launchUrl("https://twitter.com/qst_exe");
+          },
+        ),
+      ],
     );
   }
 
