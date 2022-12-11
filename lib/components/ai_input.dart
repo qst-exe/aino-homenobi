@@ -129,7 +129,6 @@ class AiInput extends StatelessWidget {
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
                                 postMessage(messageProvider, controller.text);
-                                controller.clear();
                               }
                             },
                             label: Padding(
@@ -151,7 +150,6 @@ class AiInput extends StatelessWidget {
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
                                 postMessage(messageProvider, controller.text);
-                                controller.clear();
                               }
                             },
                           ),
@@ -168,5 +166,6 @@ class AiInput extends StatelessWidget {
   void postMessage(MessageProvider messageProvider, String text) {
     messageProvider.setMessage(text);
     messageProvider.getReply(text);
+    controller.clear();
   }
 }
