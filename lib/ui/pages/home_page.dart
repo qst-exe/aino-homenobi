@@ -25,7 +25,6 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Expanded(
             child: MessageContent(),
