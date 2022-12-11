@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
-import '../data/model/license.dart';
+import '../model/license.dart';
 
 class LicenseProvider with ChangeNotifier {
   List<License> licenses = [];

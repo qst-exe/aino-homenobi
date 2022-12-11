@@ -3,9 +3,8 @@ import 'dart:convert';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 
-import '../data/model/message.dart';
+import '../model/message.dart';
 
 final functions = FirebaseFunctions.instance;
 const localStorageKey = 'messages';
@@ -25,12 +24,11 @@ class MessageProvider with ChangeNotifier {
       final res = prefs!.getString(localStorageKey);
       if (res != null) {
         final decodedData = jsonDecode(res) as List<dynamic>;
-        final newMessages= decodedData
-            .map((data) => Message.fromJson(data))
-            .toList();
+        final newMessages =
+            decodedData.map((data) => Message.fromJson(data)).toList();
         messages.addAll(newMessages);
       }
-    } catch(error) {
+    } catch (error) {
       print(error);
       resetMessage();
     }
@@ -50,12 +48,15 @@ class MessageProvider with ChangeNotifier {
   }
 
   Future<void> getReply(String text) async {
-    final postMessage = functions.httpsCallable('postMessage',);
+    final postMessage = functions.httpsCallable(
+      'postMessage',
+    );
 
     try {
       final postMessagePayload = {"message": text};
       final res = await postMessage(postMessagePayload);
-      final _aiMessage = Message(text: res.data['reply'], isCool: res.data['isCool']);
+      final _aiMessage =
+          Message(text: res.data['reply'], isCool: res.data['isCool']);
       isLoading = false;
       _update(_aiMessage);
     } catch (e) {

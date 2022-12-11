@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../provider/license_provider.dart';
+import '../../data/provider/license_provider.dart';
 import 'link_button.dart';
 
 class AiFooter extends StatelessWidget {

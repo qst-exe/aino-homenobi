@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/message_provider.dart';
+import '../../data/provider/message_provider.dart';
 import 'message_cell.dart';
 
 class MessageContent extends StatelessWidget {
