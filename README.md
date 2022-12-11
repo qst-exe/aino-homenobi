@@ -1,6 +1,6 @@
-# praise-with-ai
+# AIノほめのびくん
 
-A new Flutter project.
+AIノほめのびくんに愚痴を話してなぐさめてもらいましょう。投稿内容はAIノほめのびくんのサーバには保存されず、AIノほめのびくんも忘れてしまいます。
 
 ## Getting Started
 
