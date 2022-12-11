@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'AIノほめのびくん',
         theme: ThemeData(
-          primarySwatch: Colors.pink,
+          primarySwatch: Colors.blueGrey,
         ),
         home: HomePage(),
         localizationsDelegates: const [

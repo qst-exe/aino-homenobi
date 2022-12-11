@@ -125,6 +125,9 @@ class AiInput extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     child: screenWidth > 765
                         ? ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.pink[300],
+                            ),
                             icon: FaIcon(FontAwesomeIcons.paperPlane),
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
