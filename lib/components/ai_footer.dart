@@ -15,31 +15,28 @@ class AiFooter extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-      child: Flex(
+      child: Wrap(
         direction: Axis.horizontal,
-        mainAxisAlignment: MainAxisAlignment.center,
+        alignment: WrapAlignment.center,
         children: [
-          Row(
-            children: [
-              LinkButton(
-                label: "ほめのびくんの利用AIについて",
-                onClick: () {
-                  _launchUrl("https://beta.openai.com/");
-                },
-              ),
-              LinkButton(
-                label: "ライセンス",
-                onClick: () async {
-                  _showAlert(context, licenseProvider);
-                },
-              ),
-            ],
+          LinkButton(
+            label: "ほめのびくんの利用AIについて",
+            onClick: () {
+              _launchUrl("https://beta.openai.com/");
+            },
           ),
-          Text('© 2022 kusutan',
-              style: GoogleFonts.notoSansJavanese(
-                  textStyle: Theme.of(context).textTheme.bodyText1,
-                  color: Colors.grey,
-                  fontSize: 12)),
+          LinkButton(
+            label: "ライセンス",
+            onClick: () async {
+              _showAlert(context, licenseProvider);
+            },
+          ),
+          LinkButton(
+            label: "© 2022 kusutan",
+            onClick: () async {
+              _launchUrl("https://twitter.com/qst_exe");
+            },
+          ),
         ],
       ),
     );
