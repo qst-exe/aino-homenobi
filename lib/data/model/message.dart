@@ -10,6 +10,7 @@ abstract class Message with _$Message {
     required String text,
     @Default(false) bool isCool,
     @Default(false) bool isSelf,
+    required DateTime createdAt,
   }) = _Message;
 
   factory Message.fromJson(Map<String, dynamic> json) =>

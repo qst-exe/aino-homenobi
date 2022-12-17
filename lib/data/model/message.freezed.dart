@@ -23,6 +23,7 @@ mixin _$Message {
   String get text => throw _privateConstructorUsedError;
   bool get isCool => throw _privateConstructorUsedError;
   bool get isSelf => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $MessageCopyWith<$Res> {
   factory $MessageCopyWith(Message value, $Res Function(Message) then) =
       _$MessageCopyWithImpl<$Res, Message>;
   @useResult
-  $Res call({String text, bool isCool, bool isSelf});
+  $Res call({String text, bool isCool, bool isSelf, DateTime createdAt});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
     Object? text = null,
     Object? isCool = null,
     Object? isSelf = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       text: null == text
@@ -67,6 +69,10 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.isSelf
           : isSelf // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -78,7 +84,7 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
       __$$_MessageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String text, bool isCool, bool isSelf});
+  $Res call({String text, bool isCool, bool isSelf, DateTime createdAt});
 }
 
 /// @nodoc
@@ -94,6 +100,7 @@ class __$$_MessageCopyWithImpl<$Res>
     Object? text = null,
     Object? isCool = null,
     Object? isSelf = null,
+    Object? createdAt = null,
   }) {
     return _then(_$_Message(
       text: null == text
@@ -108,6 +115,10 @@ class __$$_MessageCopyWithImpl<$Res>
           ? _value.isSelf
           : isSelf // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -116,7 +127,10 @@ class __$$_MessageCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Message implements _Message {
   const _$_Message(
-      {required this.text, this.isCool = false, this.isSelf = false});
+      {required this.text,
+      this.isCool = false,
+      this.isSelf = false,
+      required this.createdAt});
 
   factory _$_Message.fromJson(Map<String, dynamic> json) =>
       _$$_MessageFromJson(json);
@@ -129,10 +143,12 @@ class _$_Message implements _Message {
   @override
   @JsonKey()
   final bool isSelf;
+  @override
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Message(text: $text, isCool: $isCool, isSelf: $isSelf)';
+    return 'Message(text: $text, isCool: $isCool, isSelf: $isSelf, createdAt: $createdAt)';
   }
 
   @override
@@ -142,12 +158,14 @@ class _$_Message implements _Message {
             other is _$_Message &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.isCool, isCool) || other.isCool == isCool) &&
-            (identical(other.isSelf, isSelf) || other.isSelf == isSelf));
+            (identical(other.isSelf, isSelf) || other.isSelf == isSelf) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, text, isCool, isSelf);
+  int get hashCode => Object.hash(runtimeType, text, isCool, isSelf, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -167,7 +185,8 @@ abstract class _Message implements Message {
   const factory _Message(
       {required final String text,
       final bool isCool,
-      final bool isSelf}) = _$_Message;
+      final bool isSelf,
+      required final DateTime createdAt}) = _$_Message;
 
   factory _Message.fromJson(Map<String, dynamic> json) = _$_Message.fromJson;
 
@@ -177,6 +196,8 @@ abstract class _Message implements Message {
   bool get isCool;
   @override
   bool get isSelf;
+  @override
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_MessageCopyWith<_$_Message> get copyWith =>

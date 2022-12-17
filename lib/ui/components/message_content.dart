@@ -26,12 +26,15 @@ AIノほめのびくんに愚痴を話してなぐさめてもらいましょう
       ));
     }
 
+    final messages = messageProvider.messages.reversed.toList();
+
     return ListView.builder(
-      itemCount: messageProvider.messages.length,
+      itemCount: messages.length,
       itemBuilder: (BuildContext context, int index) {
-        final message = messageProvider.messages[index];
+        final message = messages[index];
         return MessageCell(message: message);
       },
+      reverse: true,
     );
   }
 }
