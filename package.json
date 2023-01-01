@@ -13,7 +13,7 @@
     "build:runner": "fvm flutter packages pub run build_runner build --delete-conflicting-outputs",
     "dev": "fvm flutter run -d chrome --web-renderer html",
     "deploy:hosting": "fvm flutter build web --release --web-renderer html && firebase deploy --only hosting",
-    "deploy:functions": "fvm flutter build web --release --web-renderer html && firebase deploy --only functions",
+    "deploy:functions": "firebase deploy --only functions",
     "deploy": "fvm flutter build web --release --web-renderer html && firebase deploy --only hosting,functions"
   },
   "repository": {

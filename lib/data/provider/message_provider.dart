@@ -35,7 +35,8 @@ class MessageProvider with ChangeNotifier {
   }
 
   void setMessage(String text) {
-    final _myMessage = Message(text: text, isSelf: true);
+    final _myMessage =
+        Message(text: text, isSelf: true, createdAt: DateTime.now());
     isLoading = true;
     _update(_myMessage);
   }
@@ -55,8 +56,10 @@ class MessageProvider with ChangeNotifier {
     try {
       final postMessagePayload = {"message": text};
       final res = await postMessage(postMessagePayload);
-      final _aiMessage =
-          Message(text: res.data['reply'], isCool: res.data['isCool']);
+      final _aiMessage = Message(
+          text: res.data['reply'],
+          isCool: res.data['isCool'],
+          createdAt: DateTime.now());
       isLoading = false;
       _update(_aiMessage);
     } catch (e) {
