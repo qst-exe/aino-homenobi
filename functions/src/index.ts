@@ -37,15 +37,15 @@ export const postMessage = functions.https.onCall(async (data) => {
 
   try {
     const message = formatMessage(data.message);
-    const completion = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: message.text,
-      max_tokens: 500,
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{role: "user", content: message.text}],
     });
 
+    console.log(completion);
     return {
       isCool: message.isCool,
-      reply: completion.data.choices[0].text?.trim(),
+      reply: completion.data.choices[0].message?.content?.trim(),
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
