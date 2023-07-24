@@ -9,9 +9,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    target-branch: "dev"
   - package-ecosystem: "npm"
     directory: "functions/"
     schedule:
       interval: "weekly"
-    target-branch: "dev"
