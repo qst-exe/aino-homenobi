@@ -141,26 +141,26 @@ packages:
     dependency: "direct main"
     description:
       name: cloud_functions
-      sha256: "4d1ab399ac89ac59fe80616e6b3322f76cede621e32d33cdc90560097be76fee"
+      sha256: "61560d62b19f43e1d65b352ae121fc1b7046ceb6efce4e69ecd28fb110c84784"
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.7"
+    version: "4.3.4"
   cloud_functions_platform_interface:
     dependency: transitive
     description:
       name: cloud_functions_platform_interface
-      sha256: "28765c049a8945046f799279864ca8feffaa41a9e5d3c03654affbb2f282075c"
+      sha256: edfa0a929baec47df698ca28c37d03c27c020545326eeea1ed0f8b3a47b073ca
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.26"
+    version: "5.4.4"
   cloud_functions_web:
     dependency: transitive
     description:
       name: cloud_functions_web
-      sha256: "1de54c7df9091f66084a18a406f68871e7e1febe5178f36524d058a7a66adc13"
+      sha256: c2b73ef1bc9b0948bfb701a252e1a4019af4266e204270803ee7fa0f1641c74f
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.15"
+    version: "4.5.4"
   code_builder:
     dependency: transitive
     description:
@@ -237,26 +237,26 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_core
-      sha256: c129209ba55f3d4272c89fb4a4994c15bea77fb6de63a82d45fb6bc5c94e4355
+      sha256: "2e9324f719e90200dc7d3c4f5d2abc26052f9f2b995d3b6626c47a0dfe1c8192"
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.1"
+    version: "2.15.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
       name: firebase_core_platform_interface
-      sha256: "5fab93f5b354648efa62e7cc829c90efb68c8796eecf87e0888cae2d5f3accd4"
+      sha256: b63e3be6c96ef5c33bdec1aab23c91eb00696f6452f0519401d640938c94cba2
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.2"
+    version: "4.8.0"
   firebase_core_web:
     dependency: transitive
     description:
       name: firebase_core_web
-      sha256: "18b35ce111b0a4266abf723c825bcf9d4e2519d13638cc7f06f2a8dd960c75bc"
+      sha256: "0fd5c4b228de29b55fac38aed0d9e42514b3d3bd47675de52bf7f8fccaf922fa"
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.6.0"
   fixnum:
     dependency: transitive
     description:
