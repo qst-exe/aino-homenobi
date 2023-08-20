@@ -35,6 +35,6 @@ void main() {
     // Verify that ai footer is shown.
     expect(find.text('ほめのびくんの利用AIについて'), findsOneWidget);
     expect(find.text('ライセンス'), findsOneWidget);
-    expect(find.text('ほめのびくんの利用AIについて'), findsOneWidget);
+    expect(find.text('© 2022 kusutan'), findsOneWidget);
   });
 }

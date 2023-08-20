@@ -33,7 +33,7 @@ void main() {
     expect(find.text('話す'), findsOneWidget);
   });
 
-  testWidgets('Show some messages home page', (WidgetTester tester) async {
+  testWidgets('Show some messages Home page', (WidgetTester tester) async {
     DateFormat outputFormat = DateFormat('HH:mm');
 
     List<Message> mockMessages = [
