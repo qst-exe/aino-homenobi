@@ -19,9 +19,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - name: Install
+      - name: Flutter Install
         run: |
           flutter config --enable-web
           flutter pub get
-      - name: Build
+      - name: Flutter Test
+        run: flutter test --platform chrome
+      - name: Flutter Build
         run: flutter build web --release --web-renderer html
