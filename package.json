@@ -14,7 +14,9 @@
     "dev": "fvm flutter run -d chrome --web-renderer html",
     "deploy:hosting": "fvm flutter build web --release --web-renderer html && firebase deploy --only hosting",
     "deploy:functions": "firebase deploy --only functions",
-    "deploy": "fvm flutter build web --release --web-renderer html && firebase deploy --only hosting,functions"
+    "deploy": "fvm flutter build web --release --web-renderer html && firebase deploy --only hosting,functions",
+    "lint": "fvm flutter analyze",
+    "test": "fvm flutter test --platform chrome"
   },
   "repository": {
     "type": "git",
