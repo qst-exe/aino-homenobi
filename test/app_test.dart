@@ -8,6 +8,7 @@ import 'package:praise_with_ai/data/model/message.dart';
 
 import 'mock_shared_preferences.dart';
 
+// app.dart が適切に表示されるかのテスト
 void main() {
   MockSharedPreferences? mockSharedPreferences;
 

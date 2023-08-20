@@ -25,7 +25,6 @@ void main() {
               create: (context) => LicenseProvider()),
           ChangeNotifierProvider<MessageProvider>(
               create: (context) => MessageProvider(prefs)),
-          // 他のProviderもここに追加
         ],
         child: const MaterialApp(
           home: AiFooter(),
