@@ -46,7 +46,7 @@ dependencies:
   cloud_functions: ^4.0.7
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.1
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.4
   font_awesome_flutter: ^10.4.0
   animated_text_kit: ^4.2.2
   url_launcher: ^6.1.7
