@@ -1,7 +1,7 @@
 name: API Check
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
@@ -24,11 +24,3 @@ jobs:
         run: npm install
       - name: Cloud Functions Test
         run: npm run test
-      - name: Cloud Functions Build
-        run: npm install build
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only functions
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
