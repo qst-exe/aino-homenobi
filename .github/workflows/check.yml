@@ -1,4 +1,4 @@
-name: Check
+name: Flutter Check
 
 on:
   pull_request:
