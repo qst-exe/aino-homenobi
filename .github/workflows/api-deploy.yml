@@ -19,7 +19,7 @@ jobs:
       - name: setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18.17.1'
       - name: npm Install
         run: npm install
       - name: Cloud Functions Test
@@ -29,6 +29,6 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only functions
+          args: deploy --only functions:postMessage
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
