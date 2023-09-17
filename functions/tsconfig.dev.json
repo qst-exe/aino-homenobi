@@ -1,5 +1,7 @@
 {
   "include": [
-    ".eslintrc.js"
+    "__mocks__",
+    ".eslintrc.js",
+    "tests",
   ]
 }
