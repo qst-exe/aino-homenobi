@@ -1,16 +1,14 @@
 import * as functions from "firebase-functions";
-import {Configuration, OpenAIApi} from "openai";
+import OpenAI from "openai";
+import {Message} from "./types";
 
-const OPEN_API_KEY = process.env.OPEN_API_KEY;
+const getOpenAi = () => {
+  const OPEN_API_KEY = process.env.OPEN_API_KEY;
 
-const configuration = new Configuration({
-  apiKey: OPEN_API_KEY,
-});
-
-type Message = {
-  isCool: boolean
-  text: string
-}
+  return new OpenAI({
+    apiKey: OPEN_API_KEY,
+  });
+};
 
 const formatMessage = (message: string): Message => {
   const questionList = [
@@ -33,19 +31,16 @@ const formatMessage = (message: string): Message => {
 };
 
 export const postMessage = functions.https.onCall(async (data) => {
-  const openai = new OpenAIApi(configuration);
-
   try {
     const message = formatMessage(data.message);
-    const completion = await openai.createChatCompletion({
+    const completion = await getOpenAi().chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [{role: "user", content: message.text}],
     });
 
-    console.log(completion);
     return {
       isCool: message.isCool,
-      reply: completion.data.choices[0].message?.content?.trim(),
+      reply: completion.choices[0].message?.content?.trim(),
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
