@@ -1,0 +1,34 @@
+name: API Check
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'functions/**'
+
+defaults:
+  run:
+    working-directory: functions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: npm Install
+        run: npm install
+      - name: Cloud Functions Test
+        run: npm run test
+      - name: Cloud Functions Build
+        run: npm install build
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only functions
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
