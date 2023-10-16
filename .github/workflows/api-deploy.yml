@@ -29,6 +29,6 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only functions:postMessage
+          args: deploy --only functions:postMessage --force
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
