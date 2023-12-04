@@ -19,7 +19,7 @@
   "dependencies": {
     "firebase-admin": "^11.11.0",
     "firebase-functions": "^4.5.0",
-    "openai": "^4.19.0"
+    "openai": "^4.20.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",
